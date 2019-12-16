@@ -11,12 +11,14 @@ import Bond
 
 class TiempoViewModel{
     let estado = Observable<String>("")
+    let icono = Observable<String>("")
     let modelo = TiempoModelo()
     
     func consultarTiempo(de localidad : String) {
         self.modelo.consultarTiempo(localidad: localidad){
             tiempo, url in
             self.estado.value = tiempo
+            self.icono.value = url
             print("Estado: "+tiempo)
         }
     }

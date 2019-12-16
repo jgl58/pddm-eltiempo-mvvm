@@ -8,10 +8,10 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITextFieldDelegate {
-    let tiempoModelo = TiempoModelo()
-    let viewModel = TiempoViewModel()
 
+class ViewController: UIViewController, UITextFieldDelegate {
+    let viewModel = TiempoViewModel()
+    
     @IBOutlet weak var estadoLabel: UILabel!    
     @IBOutlet weak var estadoImagen: UIImageView!
     @IBOutlet weak var localidadField: UITextField!
@@ -23,8 +23,20 @@ class ViewController: UIViewController, UITextFieldDelegate {
         //consultarTiempo(localidad: "Madrid")
         localidadField.delegate = self
         self.viewModel.estado.bind(to:self.estadoLabel.reactive.text)
+        self.viewModel.icono
+            .filter {
+                icon in
+                return (icon != "") ? true : false
+        }
+        .map {
+            imagen in
+            let url = URL(string:imagen)
+            let datos = try! Data(contentsOf: url!)
+            return UIImage(data: datos)!
+        }
+        .bind(to:self.estadoImagen.reactive.image)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
