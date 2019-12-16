@@ -1,0 +1,24 @@
+PODS:
+  - Bond (7.6.3):
+    - Differ (~> 1.4)
+    - ReactiveKit (~> 3.14)
+  - Differ (1.4.3)
+  - ReactiveKit (3.15.4)
+
+DEPENDENCIES:
+  - Bond
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Bond
+    - Differ
+    - ReactiveKit
+
+SPEC CHECKSUMS:
+  Bond: 7bfe30d6dfd278b470990dd205ec44481fc74010
+  Differ: 6c7477d6187e8c36d02ec342a3c321061b85a0ea
+  ReactiveKit: 9d1d8b600f9f1ae61a36c9d3f1aa47f5b0c8ea8f
+
+PODFILE CHECKSUM: 141bfab095b459031beb26757a59625a7632d9d7
+
+COCOAPODS: 1.5.3
