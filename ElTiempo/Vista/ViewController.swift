@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController, UITextFieldDelegate {
     let tiempoModelo = TiempoModelo()
+    let viewModel = TiempoViewModel()
 
     @IBOutlet weak var estadoLabel: UILabel!    
     @IBOutlet weak var estadoImagen: UIImageView!
@@ -21,6 +22,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         // Do any additional setup after loading the view, typically from a nib.
         //consultarTiempo(localidad: "Madrid")
         localidadField.delegate = self
+        self.viewModel.estado.bind(to:self.estadoLabel.reactive.text)
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,11 +33,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func consultarTiempoPulsado(_ sender: AnyObject) {
         if let loc = self.localidadField.text {
-           self.tiempoModelo.consultarTiempo(localidad: loc) {
-               estado, urlIcono in
-                print("Estado: \(estado)")
-                print("Icono: \(urlIcono)")
-           }
+            self.viewModel.consultarTiempo(de: loc)
         }
     }
     
